@@ -86,7 +86,7 @@ async function main() {
   ] of userSizeInfoMap) {
     const afterUserSizeInfo = await cloudClient.getUserSizeInfo();
     logger.log(
-      `个人容量：⬆️  ${(
+      `个人⬆️  ${(
         (afterUserSizeInfo.cloudCapacityInfo.totalSize -
           userSizeInfo.cloudCapacityInfo.totalSize) /
         1024 /
@@ -97,7 +97,7 @@ async function main() {
         1024 /
         1024
       ).toFixed(2)}G`,
-      `家庭容量：⬆️  ${(
+      `家庭⬆️  ${(
         (afterUserSizeInfo.familyCapacityInfo.totalSize -
           userSizeInfo.familyCapacityInfo.totalSize) /
         1024 /
