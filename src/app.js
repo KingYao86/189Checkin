@@ -26,9 +26,9 @@ const doUserTask = async (cloudClient, logger) => {
       status === "fulfilled" && !value.isSign && value.netdiskBonus
   );
   logger.info(
-    `个人签到任务: 成功数/总请求数 ${result.length}/${tasks.length} 获得 ${
+    `个人任务: 成功数/总数 ${result.length}/${tasks.length} 获得 ${
       result.map(({ value }) => value.netdiskBonus)?.join(",") || "0"
-    }M 空间`
+    }M`
   );
 };
 
@@ -36,7 +36,6 @@ const run = async (userName, password, userSizeInfoMap, logger) => {
   if (userName && password) {
     const before = Date.now();
     try {
-      logger.log("开始执行");
       const cloudClient = new CloudClient({
         username: userName,
         password,
@@ -61,7 +60,7 @@ const run = async (userName, password, userSizeInfoMap, logger) => {
       }
     } finally {
       logger.log(
-        `执行完毕, 耗时 ${((Date.now() - before) / 1000).toFixed(2)} 秒`
+        `耗时 ${((Date.now() - before) / 1000).toFixed(2)} 秒`
       );
     }
   }
@@ -122,7 +121,7 @@ async function main() {
     const logs = catLogs();
     const events = recording.replay();
     const content = events.map((e) => `${e.data.join("")}`).join("  \n");
-    push("天翼云盘自动签到任务", logs + content);
+    push("189自动签到", logs + content);
     recording.erase();
     cleanLogs();
   }
