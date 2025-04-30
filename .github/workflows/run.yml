@@ -7,14 +7,14 @@ on:
     types: started
   workflow_dispatch:
   schedule:
-    - cron: "31 2 * * *"
+    - cron: "20 02 * * *"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment: user
     steps:
-      - name: 🔀 random delay 0-3 seconds
-        run: sleep $((RANDOM % 3))
+      - name: 🔀 random delay 0-30 seconds
+        run: sleep $((RANDOM % 30))
 
       - name: 🔌 Check out code
         uses: actions/checkout@main
@@ -52,7 +52,7 @@ jobs:
       - name: 🚀 Run
         uses: nick-fields/retry@master
         with:
-          timeout_minutes: 30
+          timeout_minutes: 10
           max_attempts: 3
           command: npm start
       
